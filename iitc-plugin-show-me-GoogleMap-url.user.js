@@ -4,8 +4,8 @@
 // @category       Info
 // @version        0.0.1
 // @namespace      https://github.com/tarmn3
-// @updateURL
-// @downloadURL
+// @updateURL      https://github.com/tarmn3/showmegmapurl/raw/master/iitc-plugin-show-me-GoogleMap-url.user.js
+// @downloadURL    https://github.com/tarmn3/showmegmapurl/raw/master/iitc-plugin-show-me-GoogleMap-url.user.js
 // @description    Google Map URL to a portal
 // @author         tarmn3
 // @include        https://*.ingress.com/intel*
@@ -31,18 +31,15 @@ if(typeof window.plugin !== 'function') window.plugin = function(){};
 	window.plugin.showMeGoogleMapUrl.appendDetails = function(data){
 		var guid = window.selectedPortal;
 		var p = window.portals[guid];
-        var dat = p.options.data;
+	        var dat = p.options.data;
 
-        var lat = dat.latE6/1E6;
-        var lng = dat.lngE6/1E6;
+	        var lat = dat.latE6/1E6;
+	        var lng = dat.lngE6/1E6;
 
-        // var gmapUrl = 'https://maps.google.com/maps?ll='+lat+','+lng+'&q='+lat+','+lng;
-        var gmapUrl = 'https://maps.google.com/maps?ll='+lat+','+lng+'&q='+lat+','+lng;
+	        var gmapUrl = 'https://maps.google.com/maps?ll='+lat+','+lng+'&q='+lat+','+lng;
+	        var permaHtml = $('<div>').html( $('<a>').attr({href:gmapUrl, title:'a Map URL link to this portal'}).text('GMap link') ).html();
 
-        var permaHtml = $('<div>').html( $('<a>').attr({href:gmapUrl, title:'a Map URL link to this portal'}).text('GMap link') ).html();
-
-	    $('#portaldetails .linkdetails').before('<div class="portalGoogleMapUrl">'+permaHtml+'</div>');
-
+		$('#portaldetails .linkdetails').before('<div class="portalGoogleMapUrl">'+permaHtml+'</div>');
 	}
 
 	var setup = function() {
